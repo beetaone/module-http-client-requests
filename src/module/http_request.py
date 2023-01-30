@@ -1,4 +1,3 @@
-import asyncio
 from logging import getLogger
 from urllib.parse import urlparse
 import json
@@ -14,7 +13,6 @@ class HttpRequest:
         url,
         method="GET",
         auth_token=None,
-        poll_period=0,
         response_type="JSON",
         payload=None,
         header=None,
@@ -22,7 +20,6 @@ class HttpRequest:
         self.url = url
         self.method = method
         self.auth_token = auth_token
-        self.poll_period = poll_period
         self.response_type = response_type
         self.payload = payload
         self.header = header
@@ -30,7 +27,6 @@ class HttpRequest:
         log.debug(f"URL: {self.url}")
         log.debug(f"Method: {self.method}")
         log.debug(f"Auth Token: {self.auth_token}")
-        log.debug(f"Poll Period: {self.poll_period}")
         log.debug(f"Response Type: {self.response_type}")
         log.debug(f"Payload: {self.payload}")
         log.debug(f"Header: {self.header}")
@@ -62,15 +58,9 @@ class HttpRequest:
                 )
 
             async with method(self.url, headers=headers, json=self.payload) as response:
-                log.debug(f"Response status: {response.status}")
-                log.debug(f"Response headers: {response.headers}")
-                log.debug(f"Response content: {await response.text()}")
+                # log.debug(f"Response status: {response.status}")
+                # log.debug(f"Response headers: {response.headers}")
+                # log.debug(f"Response content: {await response.text()}")
 
                 return await response.text()
 
-    async def poll(self):
-        while True:
-            await self.send_request()
-            if self.poll_period == 0:
-                break
-            await asyncio.sleep(self.poll_period)

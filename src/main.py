@@ -30,6 +30,8 @@ async def main():
         "HEADER": getenv("HEADER"),
     }
 
+    assert(configuration["POLL_PERIOD"] > 0, "Poll period must be greater than 0 seconds")
+
     await module_main(configuration)
 
 
