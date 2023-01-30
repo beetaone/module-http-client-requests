@@ -1,6 +1,7 @@
 """
 Entrypoint file that sets up and starts REST API server for the module.
 """
+import asyncio
 
 from os import getenv
 from logging import getLogger
@@ -13,7 +14,7 @@ setup_logging()
 log = getLogger("main")
 
 
-def main():
+async def main():
     log.info(
         "%s running with end-point set to %s",
         getenv("MODULE_NAME"),
@@ -23,14 +24,15 @@ def main():
         "URL": getenv("URL"),
         "METHOD": getenv("METHOD"),
         "AUTH_TOKEN": getenv("AUTH_TOKEN"),
-        "POLL_PERIOD": getenv("POLL_PERIOD"),
+        "POLL_PERIOD": int(getenv("POLL_PERIOD")),
         "RESPONSE_TYPE": getenv("RESPONSE_TYPE"),
         "PAYLOAD": getenv("PAYLOAD"),
         "HEADER": getenv("HEADER"),
     }
 
-    module_main(configuration)
+    await module_main(configuration)
 
 
 if __name__ == "__main__":
-    main()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

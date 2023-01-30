@@ -32,8 +32,7 @@ def send_data(processed_data: any) -> str:
         # fan-out
         for url in urls:
             # send data to the next module
-            response = post(url=url, json=processed_data)
-
+            response = post(url=url, json={"payload": processed_data})
             log.debug(
                 f"Sent data to url {url} | Response: {response.status_code} {response.reason}"
             )
