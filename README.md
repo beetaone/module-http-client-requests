@@ -11,6 +11,7 @@
 
 - [HTTP Ingress](#http-ingress)
   - [Table of Content](#table-of-content)
+  - [NEW](#new)
   - [Description](#description)
   - [Environment Variables](#environment-variables)
     - [Module Specific](#module-specific)
@@ -18,6 +19,11 @@
   - [Dependencies](#dependencies)
   - [Input](#input)
   - [Output](#output)
+
+
+## NEW
+
+The given Python class, HttpRequest, is an implementation of a simple HTTP client using the aiohttp library. It provides methods for sending a HTTP request and polling a URL at a specified interval. The class takes in a URL, method, authentication token, poll period, response type, payload, and header as parameters. The class also contains some error handling, such as checking if the URL is valid and raising an error if the method is not one of the allowed values. The send_request method sends the HTTP request and returns the response as either JSON or text, depending on the response_type parameter. The poll method repeatedly sends the request and prints the response until the poll period is 0.
 
 ## Description
 

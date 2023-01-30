@@ -1,8 +1,19 @@
 import asyncio
 import aiohttp
+from urllib.parse import urlparse
+
 
 class HttpRequest:
-    def __init__(self, url, method='GET', auth_token=None, poll_period=0, response_type='JSON', payload=None, header=None):
+    def __init__(
+        self,
+        url,
+        method="GET",
+        auth_token=None,
+        poll_period=0,
+        response_type="JSON",
+        payload=None,
+        header=None,
+    ):
         self.url = url
         self.method = method
         self.auth_token = auth_token
@@ -10,6 +21,10 @@ class HttpRequest:
         self.response_type = response_type
         self.payload = payload
         self.header = header
+
+        parsed_url = urlparse(self.url)
+        if not all([parsed_url.scheme, parsed_url.netloc]):
+            raise ValueError(f"Invalid URL: {self.url}")
 
     async def send_request(self):
         headers = {}
@@ -20,30 +35,24 @@ class HttpRequest:
             headers["Authorization"] = f"Bearer {self.auth_token}"
 
         async with aiohttp.ClientSession() as session:
-            if self.method == 'GET':
-                async with session.get(self.url, headers=headers) as response:
-                    if self.response_type == 'JSON':
-                        return await response.json()
-                    else:
-                        return await response.text()
-            elif self.method == 'POST':
-                async with session.post(self.url, headers=headers, json=self.payload) as response:
-                    if self.response_type == 'JSON':
-                        return await response.json()
-                    else:
-                        return await response.text()
-            elif self.method == 'PUT':
-                async with session.put(self.url, headers=headers, json=self.payload) as response:
-                    if self.response_type == 'JSON':
-                        return await response.json()
-                    else:
-                        return await response.text()
-            elif self.method == 'DELETE':
-                async with session.delete(self.url, headers=headers) as response:
-                    if self.response_type == 'JSON':
-                        return await response.json()
-                    else:
-                        return await response.text()
+            method_map = {
+                "GET": session.get,
+                "POST": session.post,
+                "PUT": session.put,
+                "DELETE": session.delete,
+            }
+
+            method = method_map.get(self.method)
+            if not method:
+                raise ValueError(
+                    f"Invalid method: {self.method}. Allowed methods are GET, POST, PUT, and DELETE"
+                )
+
+            async with method(self.url, headers=headers, json=self.payload) as response:
+                if self.response_type == "JSON":
+                    return await response.json()
+                else:
+                    return await response.text()
 
     async def poll(self):
         while True:

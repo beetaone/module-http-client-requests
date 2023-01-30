@@ -7,13 +7,12 @@ Edit this file to implement your module.
 
 from logging import getLogger
 from api.send_data import send_data
-from bottle import post, request, response
+from http_request import HttpRequest
 
 log = getLogger("module")
 
 
-@post("/")
-def module_main():
+def module_main(configuration):
     """
     Implements module's main logic for inputting data.
     Function description should not be modified.
@@ -25,10 +24,20 @@ def module_main():
         # YOUR CODE HERE
         # ----------------------------------------------------------------
 
-        # receive data from the previous module
-        log.debug("Run")
+        request = HttpRequest(
+            configuration["URL"], configuration["METHOD"], configuration["AUTH_TOKEN"], configuration["POLL_PERIOD"],
+            configuration["RESPONSE_TYPE"], configuration["PAYLOAD"], configuration["HEADER"]
+        )
+
+        # ----------------------------------------------------------------
+
+        # send data to the next module
+        send_error = send_data(request)
+
+        if send_error:
+            log.error(send_error)
+        else:
+            log.debug("Data sent sucessfully.")
 
     except Exception as e:
         log.error(f"Exception in the module business logic: {e}")
-        response.status = 400
-        return f"Exception occurred in the successive module while handling your POST request. {e}"

@@ -8,6 +8,7 @@ from bottle import run
 from api import setup_logging
 from module import module_main
 
+
 setup_logging()
 log = getLogger("main")
 
@@ -18,13 +19,17 @@ def main():
         getenv("MODULE_NAME"),
         getenv("EGRESS_URLS"),
     )
+    configuration = {
+        "URL": getenv("URL"),
+        "METHOD": getenv("METHOD"),
+        "AUTH_TOKEN": getenv("AUTH_TOKEN"),
+        "POLL_PERIOD": getenv("POLL_PERIOD"),
+        "RESPONSE_TYPE": getenv("RESPONSE_TYPE"),
+        "PAYLOAD": getenv("PAYLOAD"),
+        "HEADER": getenv("HEADER"),
+    }
 
-    # start the server
-    run(
-        host="0.0.0.0",
-        port=getenv("HOST_PORT"),
-        quiet=True,
-    )
+    module_main(configuration)
 
 
 if __name__ == "__main__":
