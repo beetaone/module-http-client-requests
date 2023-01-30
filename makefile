@@ -2,6 +2,7 @@ SHELL := /bin/bash # to enable source command in run_app
 
 MODULE=weevenetwork/http-client-requests
 VERSION_NAME=v1.0.0
+NETWORK_NAME=dtestnet
 
 lint:
 	black src/
@@ -48,3 +49,12 @@ run_listener:
 	--name listener \
 	jmalloc/echo-server
 .phony: run_listener
+
+listentest: ## Run a listener container and receive messages from this container
+	docker network create $(NETWORK_NAME) || true
+	docker run --detach --network=$(NETWORK_NAME) --rm \
+		-e PORT=8000 \
+		-e LOG_HTTP_BODY=true \
+		-e LOG_HTTP_HEADERS=true \
+		--name echo jmalloc/echo-server
+	docker run --rm --env-file=./.env --network=$(NETWORK_NAME) ${MODULE}:${VERSION_NAME}
