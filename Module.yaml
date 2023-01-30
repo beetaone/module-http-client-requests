@@ -1,0 +1,35 @@
+displayName: 'HTTP Ingress'       # Display name for the module that will be displayed in the UI.
+moduleName: 'http-ingress'        # Module name that will be used to reference the module, and uniquely identify the module and their versions.
+description: 'Data ingress for HTTP ReST API requests.'       # Module description that will be displayed in the UI.
+versionName: 'v1.0.0'                    # Module version name that will be used to reference the module version, and uniquely identify the module version with a common name.
+isPublic: true                          # Boolean value that indicates if the module is Public or Private.
+categories:                             # Array of category that will be used to group the module in the UI.
+  - 'Ingress'
+type: 'Input'      # Module type (Input, Processing, Output) that will be used to group the module in the UI.
+image:
+  name: 'weevenetwork/http-ingress'     # Image name from the docker registry.
+  tag: 'v1.0.0'                               # Image tag from the docker registry.
+  homepage: 'https://hub.docker.com/r/weevenetwork/http-ingress'      # Image homepage from the docker registry.
+repository: 'https://github.com/weeve-modules/http-ingress'     # Repository URL to source code.
+envs:                                   # Array of environment variables that will be used to configure the module. Also used to show related fields on the UI.
+  - name: Host Port
+    key: HOST_PORT
+    description: Port on which the server will run.
+    value: '80'
+    type: 'number'
+    options: []
+    dependencies: []
+ports: []
+mounts: []
+envMounts: []
+devices: []
+envDevices: []
+envPorts:
+  - HOST_PORT
+tags:                                   # Array of tags.
+  - 'HTTP'
+  - 'Python'
+  - 'Input'
+  - 'Boilerplate'
+  - '1.0.0'
+icon: 'https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_http_input.png'    # Icon URL that will be displayed in the UI.
