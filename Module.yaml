@@ -1,22 +1,57 @@
-displayName: 'HTTP Ingress'       # Display name for the module that will be displayed in the UI.
-moduleName: 'http-ingress'        # Module name that will be used to reference the module, and uniquely identify the module and their versions.
-description: 'Data ingress for HTTP ReST API requests.'       # Module description that will be displayed in the UI.
+displayName: 'HTTP Client Requests'       # Display name for the module that will be displayed in the UI.
+moduleName: 'http-client-requests'        # Module name that will be used to reference the module, and uniquely identify the module and their versions.
+description: 'This Module performs repeated HTTP requests (acting as a client) at a specified interval, to the given URL.'       # Module description that will be displayed in the UI.
 versionName: 'v1.0.0'                    # Module version name that will be used to reference the module version, and uniquely identify the module version with a common name.
 isPublic: true                          # Boolean value that indicates if the module is Public or Private.
 categories:                             # Array of category that will be used to group the module in the UI.
   - 'Ingress'
 type: 'Input'      # Module type (Input, Processing, Output) that will be used to group the module in the UI.
 image:
-  name: 'weevenetwork/http-ingress'     # Image name from the docker registry.
+  name: 'weevenetwork/http-client-requests'     # Image name from the docker registry.
   tag: 'v1.0.0'                               # Image tag from the docker registry.
-  homepage: 'https://hub.docker.com/r/weevenetwork/http-ingress'      # Image homepage from the docker registry.
-repository: 'https://github.com/weeve-modules/http-ingress'     # Repository URL to source code.
+  homepage: 'https://hub.docker.com/r/weevenetwork/http-client-requests'      # Image homepage from the docker registry.
+repository: 'https://github.com/weeve-modules/http-client-requests'     # Repository URL to source code.
 envs:                                   # Array of environment variables that will be used to configure the module. Also used to show related fields on the UI.
-  - name: Host Port
-    key: HOST_PORT
-    description: Port on which the server will run.
-    value: '80'
-    type: 'number'
+  - name: URL
+    key: URL
+    description: The full URL, including protocol and path
+    value: 'https://catfact.ninja/fact'
+    type: 'string'
+    options: []
+    dependencies: []
+  - name: HTTP request method
+    key: METHOD
+    description: HTTP request method; GET, POST, DELETE, PUT
+    value: 'GET'
+    type: 'string'
+    options: []
+    dependencies: []
+  - name: Authorization token
+    key: AUTH_TOKEN
+    description: 'Will be passed as "{Authorization: Bearer AUTH_TOKEN}"'
+    value: ''
+    type: 'string'
+    options: []
+    dependencies: []
+  - name: HTTP Response payload type
+    key: RESPONSE_TYPE
+    description: Text or JSON as both return and forward type
+    value: 'TEXT'
+    type: 'string'
+    options: []
+    dependencies: []
+  - name: Payload
+    key: PAYLOAD
+    description: Data for HTTP POST
+    value: ''
+    type: 'string'
+    options: []
+    dependencies: []
+  - name: Header
+    key: HEADER
+    description: Additional HTTP header, as a JSON string
+    value: ''
+    type: 'string'
     options: []
     dependencies: []
 ports: []
@@ -24,12 +59,11 @@ mounts: []
 envMounts: []
 devices: []
 envDevices: []
-envPorts:
-  - HOST_PORT
+envPorts: []
 tags:                                   # Array of tags.
   - 'HTTP'
   - 'Python'
   - 'Input'
-  - 'Boilerplate'
+  - 'Client'
   - '1.0.0'
 icon: 'https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_http_input.png'    # Icon URL that will be displayed in the UI.
