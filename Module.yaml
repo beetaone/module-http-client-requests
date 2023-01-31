@@ -1,6 +1,6 @@
 displayName: "HTTP Client Requests" # Display name for the module that will be displayed in the UI.
 moduleName: "http-client-requests" # Module name that will be used to reference the module, and uniquely identify the module and their versions.
-description: "This Module performs repeated HTTP requests (acting as a client) at a specified interval, to the given URL." # Module description that will be displayed in the UI.
+description: "This Module performs repeated HTTP requests (acting as a client) at a specified interval, to the given URL. This module may be used to interact with a single REST API resource endpoint." # Module description that will be displayed in the UI.
 versionName: "v1.0.0" # Module version name that will be used to reference the module version, and uniquely identify the module version with a common name.
 isPublic: true # Boolean value that indicates if the module is Public or Private.
 categories: # Array of category that will be used to group the module in the UI.
