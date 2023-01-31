@@ -26,7 +26,7 @@ NOTE: Response type not implemented - all response is converted to text. There i
 NOTE: Only one header is supported.
 NOTE: Return code errors not supported.
 
-The Python class, HttpRequest, is an implementation of a simple HTTP client using the aiohttp library. It provides methods for sending a HTTP request and polling a URL at a specified interval. The class takes in a URL, method, authentication token, response type, payload, and header as parameters. The class also contains some error handling, such as checking if the URL is valid and raising an error if the method is not one of the allowed values. The send_request method sends the HTTP request and returns the response as either JSON or text, depending on the response_type parameter. The poll method repeatedly sends the request and forwards the response.
+The Python class, HttpRequest, is an implementation of a simple HTTP client using the aiohttp library. It provides methods for sending a HTTP request and polling a URL at a specified interval. The class takes in a URL, method, authentication token, response type, payload, and header as parameters. The class also contains some error handling, such as checking if the URL is valid and raising an error if the method is not one of the allowed values. The send_request method sends the HTTP request and forwards the response to the next module. The poll method repeatedly sends the request and forwards the response.
 
 ## Environment Variables
 
@@ -39,7 +39,6 @@ The following module configurations can be provided in a data service designer s
 | URL                   | string | The full URL, including protocol and path              |
 | METHOD                | string | HTTP request method; GET, POST, DELETE, PUT            |
 | AUTH_TOKEN            | string | Will be passed as "{Authorization: Bearer AUTH_TOKEN}" |
-| RESPONSE_TYPE         | string | Either TEXT or JSON                                    |
 | PAYLOAD               | string | Data for POST                                          |
 | HEADER                | string | Additional HTTP header, as a JSON string               |
 

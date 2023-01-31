@@ -21,22 +21,19 @@ envs: # Array of environment variables that will be used to configure the module
       dependencies: []
     - name: HTTP request method
       key: METHOD
-      description: HTTP request method; GET, POST, DELETE, PUT
+      description: HTTP request method
       value: "GET"
-      type: "string"
-      options: []
+      type: "select"
+      options:
+        - GET
+        - POST
+        - PUT
+        - DELETE
       dependencies: []
     - name: Authorization token
       key: AUTH_TOKEN
       description: 'Will be passed as "{Authorization: Bearer AUTH_TOKEN}"'
       value: ""
-      type: "string"
-      options: []
-      dependencies: []
-    - name: HTTP Response payload type
-      key: RESPONSE_TYPE
-      description: Text or JSON as both return and forward type
-      value: "TEXT"
       type: "string"
       options: []
       dependencies: []

@@ -25,12 +25,9 @@ async def main():
         "METHOD": getenv("METHOD"),
         "AUTH_TOKEN": getenv("AUTH_TOKEN"),
         "POLL_PERIOD": int(getenv("POLL_PERIOD")),
-        "RESPONSE_TYPE": getenv("RESPONSE_TYPE"),
         "PAYLOAD": getenv("PAYLOAD"),
         "HEADER": getenv("HEADER"),
     }
-
-    assert(configuration["POLL_PERIOD"] > 0, "Poll period must be greater than 0 seconds")
 
     await module_main(configuration)
 

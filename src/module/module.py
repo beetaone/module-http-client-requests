@@ -22,32 +22,31 @@ async def module_main(configuration):
     log.debug("Starting module ...")
 
     try:
-        # YOUR CODE HERE
-        # ----------------------------------------------------------------
         request = http_request.HttpRequest(
             configuration["URL"],
             configuration["METHOD"],
             configuration["AUTH_TOKEN"],
-            configuration["RESPONSE_TYPE"],
             configuration["PAYLOAD"],
             configuration["HEADER"],
         )
 
         while True:
-            response = await request.send_request()
-            log.debug(f"Response: {response}")
-            send_error = send_data(response)
-
-            if send_error:
-                log.error(send_error)
+            status, body = await request.send_request()
+            if int(status / 100) != 2:
+                log.error(f"Got response with status {status}: {body}")
             else:
-                log.debug("Data sent sucessfully.")
-            # print("response: ", response)
-            # print("response type: ", type(response))
+                log.debug(f"Response: {body}")
+                send_error = send_data(body)
+
+                if send_error:
+                    log.error(send_error)
+                else:
+                    log.debug("Data sent sucessfully.")
+
+            if configuration["POLL_PERIOD"] <= 0:
+                break
 
             await asyncio.sleep(configuration["POLL_PERIOD"])
-
-        # ----------------------------------------------------------------
 
     except Exception as e:
         log.error(f"Exception in the module business logic: {e}")
