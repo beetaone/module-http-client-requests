@@ -24,7 +24,7 @@ async def main():
         "URL": getenv("URL"),
         "METHOD": getenv("METHOD"),
         "AUTH_TOKEN": getenv("AUTH_TOKEN"),
-        "POLL_PERIOD": int(getenv("POLL_PERIOD")),
+        "POLL_INTERVAL": int(getenv("POLL_INTERVAL")),
         "PAYLOAD": getenv("PAYLOAD"),
         "HEADER": getenv("HEADER"),
     }

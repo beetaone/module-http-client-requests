@@ -1,13 +1,17 @@
 version: "3.0"
 services:
-  http-ingress:
+  http-client-requests:
     build:
       context: ../
       dockerfile: docker/Dockerfile
     environment:
-      MODULE_NAME: "http-ingress"
+      MODULE_NAME: "http-client-requests"
       MODULE_TYPE: "Input"
-      EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
-      HOST_PORT: 80
+      URLS: "https://catfact.ninja/fact"
+      METHOD: "GET"
+      AUTH_TOKEN: ""
+      POLL_INTERVAL: "5"
+      PAYLOAD: ""
+      HEADER: ""
     ports:
       - 80:80

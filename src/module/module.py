@@ -43,10 +43,10 @@ async def module_main(configuration):
                 else:
                     log.debug("Data sent sucessfully.")
 
-            if configuration["POLL_PERIOD"] <= 0:
+            if configuration["POLL_INTERVAL"] <= 0:
                 break
 
-            await asyncio.sleep(configuration["POLL_PERIOD"])
+            await asyncio.sleep(configuration["POLL_INTERVAL"])
 
     except Exception as e:
         log.error(f"Exception in the module business logic: {e}")
