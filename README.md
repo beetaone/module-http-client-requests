@@ -1,11 +1,11 @@
 # HTTP Client Requests
 
-|           |                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------ |
-| Name      | HTTP Client Requests                                                                       |
-| Version   | v1.0.0                                                                                     |
-| DockerHub | [weevenetwork/http-client-requests](https://github.com/weeve-modules/http-client-requests) |
-| authors   | Marcus Jones                                                                               |
+|           |                                                                                                 |
+| --------- | ----------------------------------------------------------------------------------------------- |
+| Name      | HTTP Client Requests                                                                            |
+| Version   | v1.0.0                                                                                          |
+| DockerHub | [weevenetwork/http-client-requests](https://hub.docker.com/r/weevenetwork/http-client-requests) |
+| Authors   | Marcus Jones                                                                                    |
 
 ## Table of Contents
 
@@ -39,6 +39,7 @@ The following module configurations can be provided in a data service designer s
 | AUTH_TOKEN            | string | Will be passed as "{Authorization: Bearer AUTH_TOKEN}" |
 | PAYLOAD               | string | Data for POST                                          |
 | HEADER                | string | Additional HTTP header, as a JSON string               |
+| POLL_INTERVAL         | string | Poll interval in seconds                               |
 
 ### Set by the weeve Agent on the edge-node
 
