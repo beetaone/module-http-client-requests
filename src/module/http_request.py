@@ -53,4 +53,7 @@ class HttpRequest:
             async with method(
                 self.url, headers=self.headers, json=self.payload
             ) as response:
-                return response.status, await response.text()
+                if response.headers["Content-Type"] == "application/json":
+                    return response.status, await response.json()
+                else:
+                    return response.status, await response.text()
