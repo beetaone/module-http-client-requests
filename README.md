@@ -3,7 +3,7 @@
 |           |                                                                                                 |
 | --------- | ----------------------------------------------------------------------------------------------- |
 | Name      | HTTP Client Requests                                                                            |
-| Version   | v1.0.2                                                                                          |
+| Version   | v1.0.3                                                                                          |
 | DockerHub | [weevenetwork/http-client-requests](https://hub.docker.com/r/weevenetwork/http-client-requests) |
 | Authors   | Marcus Jones                                                                                    |
 

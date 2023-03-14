@@ -1,7 +1,7 @@
 SHELL := /bin/bash # to enable source command in run_app
 
 MODULE=weevenetwork/http-client-requests
-VERSION_NAME=v1.0.2
+VERSION_NAME=v1.0.3
 NETWORK_NAME=dtestnet
 
 lint:
