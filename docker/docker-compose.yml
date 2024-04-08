@@ -5,13 +5,17 @@ services:
       context: ../
       dockerfile: docker/Dockerfile
     environment:
+      EGRESS_URLS: https://webhook.site/96500764-c8cb-4945-9caf-da2693fe28eb
       MODULE_NAME: "http-client-requests"
       MODULE_TYPE: "Input"
-      URLS: "https://catfact.ninja/fact"
+      URL: http://192.168.178.64/Gpio/v1/Sensor/bme280
       METHOD: "GET"
       AUTH_TOKEN: ""
-      POLL_INTERVAL: "5"
+      POLL_INTERVAL: "10"
       PAYLOAD: ""
       HEADER: ""
+      LOG_LEVEL: "DEBUG"
     ports:
       - 80:80
+    volumes:
+      - ../src:/app/src

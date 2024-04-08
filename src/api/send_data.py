@@ -6,6 +6,7 @@ It sends data with REST API POST request to the next module.
 from os import getenv
 from requests import exceptions, post
 from logging import getLogger
+import json
 
 log = getLogger("send_data")
 
@@ -32,7 +33,7 @@ def send_data(processed_data: any) -> str:
         # fan-out
         for url in urls:
             # send data to the next module
-            response = post(url=url, json={"payload": processed_data})
+            response = post(url=url, json=convert_json_string_to_dict(processed_data))
             log.debug(
                 f"Sent data to url {url} | Response: {response.status_code} {response.reason}"
             )
@@ -59,3 +60,11 @@ def send_data(processed_data: any) -> str:
         exceptions.ConnectTimeout,
     ) as e:
         return f"Exception when sending data to the next module: {e}"
+# function to convert json string to dictionary if possible otherwise return the string
+
+
+def convert_json_string_to_dict(data: str) -> dict:
+    try:
+        return json.loads(data)
+    except json.JSONDecodeError:
+        return {"payload": data}
