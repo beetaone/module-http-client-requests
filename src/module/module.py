@@ -8,7 +8,8 @@ Edit this file to implement your module.
 from logging import getLogger
 from api.send_data import send_data
 import asyncio
-from . import http_request
+import requests
+
 
 log = getLogger("module")
 
@@ -22,16 +23,17 @@ async def module_main(configuration):
     log.debug("Starting module ...")
 
     try:
-        request = http_request.HttpRequest(
-            configuration["URL"],
-            configuration["METHOD"],
-            configuration["AUTH_TOKEN"],
-            configuration["PAYLOAD"],
-            configuration["HEADER"],
-        )
-
         while True:
-            status, body = await request.send_request()
+            log.debug("Configuration: %s", configuration)
+            response = requests.request(
+                configuration["METHOD"],
+                configuration["URL"],
+                headers=configuration["HEADER"],
+                data=configuration["PAYLOAD"],
+            )
+            status = response.status_code
+            body = response.text
+            # status, body = await request.r
             if int(status / 100) != 2:
                 log.error(f"Got response with status {status}: {body}")
             else:

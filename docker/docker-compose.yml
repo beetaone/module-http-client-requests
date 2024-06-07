@@ -1,21 +1,21 @@
 version: "3.0"
 services:
-  http-client-requests:
-    build:
-      context: ../
-      dockerfile: docker/Dockerfile
-    environment:
-      EGRESS_URLS: https://webhook.site/96500764-c8cb-4945-9caf-da2693fe28eb
-      MODULE_NAME: "http-client-requests"
-      MODULE_TYPE: "Input"
-      URL: http://192.168.178.64/Gpio/v1/Sensor/bme280
-      METHOD: "GET"
-      AUTH_TOKEN: ""
-      POLL_INTERVAL: "10"
-      PAYLOAD: ""
-      HEADER: ""
-      LOG_LEVEL: "DEBUG"
-    ports:
-      - 80:80
-    volumes:
-      - ../src:/app/src
+    http-client-requests:
+        build:
+            context: ../
+            dockerfile: docker/Dockerfile
+        environment:
+            EGRESS_URLS: https://webhook.site/344ac4c4-b2ec-4708-9fe0-97c86d5e7df0
+            MODULE_NAME: "http-client-requests"
+            MODULE_TYPE: "Input"
+            URL: http://192.168.1.127/Gpio/v1/Sensor/bme280
+            METHOD: "GET"
+            AUTH_TOKEN: ""
+            POLL_INTERVAL: "2"
+            PAYLOAD: ""
+            HEADER: ""
+            LOG_LEVEL: "DEBUG"
+        ports:
+            - 80:80
+        volumes:
+            - ../src:/app/src
