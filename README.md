@@ -4,7 +4,7 @@
 | --------- | ----------------------------------------------------------------------------------------------- |
 | Name      | HTTP Client Requests                                                                            |
 | Version   | v1.0.3                                                                                          |
-| DockerHub | [weevenetwork/http-client-requests](https://hub.docker.com/r/weevenetwork/http-client-requests) |
+| DockerHub | [beetaone/http-client-requests](https://hub.docker.com/r/beetaone/http-client-requests) |
 | Authors   | Marcus Jones                                                                                    |
 
 ## Table of Contents
@@ -14,7 +14,7 @@
   - [Description](#description)
   - [Environment Variables](#environment-variables)
     - [Module Specific](#module-specific)
-    - [Set by the weeve Agent on the edge-node](#set-by-the-weeve-agent-on-the-edge-node)
+    - [Set by the beetaone Agent on the edge-node](#set-by-the-beetaone-agent-on-the-edge-node)
   - [Input](#input)
   - [Output](#output)
 
@@ -30,7 +30,7 @@ The Python class, HttpRequest, is an implementation of a simple HTTP client usin
 
 ### Module Specific
 
-The following module configurations can be provided in a data service designer section on weeve platform:
+The following module configurations can be provided in a data service designer section on beetaone platform:
 
 | Environment Variables | type   | Description                                            |
 | --------------------- | ------ | ------------------------------------------------------ |
@@ -41,9 +41,9 @@ The following module configurations can be provided in a data service designer s
 | HEADER                | string | Additional HTTP header, as a JSON string               |
 | POLL_INTERVAL         | int    | Poll interval in seconds                               |
 
-### Set by the weeve Agent on the edge-node
+### Set by the beetaone Agent on the edge-node
 
-Other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
+Other features required for establishing the inter-container communication between modules in a data service are set by beetaone agent.
 
 | Environment Variables | type   | Description                                                                                          |
 | --------------------- | ------ | ---------------------------------------------------------------------------------------------------- |

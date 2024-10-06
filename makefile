@@ -1,6 +1,6 @@
 SHELL := /bin/bash # to enable source command in run_app
 
-MODULE=weevenetwork/http-client-requests
+MODULE=beetaone/http-client-requests
 VERSION_NAME=v1.0.3
 NETWORK_NAME=dtestnet
 
@@ -57,4 +57,4 @@ listentest: ## Run a listener container and receive messages from this container
 		-e LOG_HTTP_BODY=true \
 		-e LOG_HTTP_HEADERS=true \
 		--name echo jmalloc/echo-server
-	docker run --rm --env-file=./.env --network=$(NETWORK_NAME) ${MODULE}:${VERSION_NAME}
+	docker run --rm --env-file=./.env --network=$(NETWORK_NAME) ${MODULE}:${VERSION_NAME}AME}
